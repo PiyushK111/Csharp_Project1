@@ -1,0 +1,190 @@
+﻿@model UserRecordForm.Models.UserRecord
+
+
+@{
+    ViewBag.Title = "ViewAllRecord";
+}
+
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="    https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <style>
+        .input-container {
+            position: relative;
+        }
+
+        .clear-button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style> 
+</head>
+<body>
+    <h2>View All Records</h2>
+    <div style="font-family:Arial black;">
+        <br />
+        <p>
+            @Html.ActionLink(linkText: "New User", actionName: "InsertUser", controllerName: "UserRecord")
+        </p>
+
+
+        @using (Html.BeginForm("ViewAll", "UserRecord", FormMethod.Get))
+        {
+
+            <label for="pageSize">Records Per Page:</label>
+            <input type="number" id="itemPerPage" name="pageSize" style="width:50px;height:30px;border:solid" placeholder="@ViewBag.PageSize" />
+            @*<button type="submit" id="recordPerPageSubmit" style="width:50px;height:25px">GET</button>*@
+
+            @Html.Hidden("sortBy", "null")
+            @Html.Hidden("Page", "1")
+
+       
+            <div class="input-container" col-md-6">
+                <input type="search" name="searchText" id="searchQuery" style="width:500px" placeholder="Search here" value="@ViewBag.searchText" />
+                <span class="clear-button">&times;</span>
+
+                <button type="submit" id="searchSubmit" style="width:100px" value="Search">Search</button>
+            </div>
+        }
+
+        <table class="table table-bordered table-hover" id="myTable">
+            <tr style="background-color:lightgoldenrodyellow">
+                <th>
+                    @Html.RouteLink("ID", "ViewAllUser", new { sortBy = ViewBag.UserIdSortParm, Page = Request.QueryString["Page"] })
+
+                </th>
+
+                <th>
+                    @Html.RouteLink("First Name", "ViewAllUser", new { sortBy = ViewBag.NameSortParm, Page = Request.QueryString["Page"] })
+
+                    @*                    @Html.ActionLink("firstName", "ViewAll", new { sortBy = ViewBag.NameSortParm }, new { Page = 1 })
+                    *@
+                </th>
+                <th>
+                    @Html.RouteLink("Last Name", "ViewAllUser", new { sortBy = ViewBag.lastNameParm, Page = Request.QueryString["Page"] })
+
+                </th>
+                <a href="~/Content/bootstrap.css.map">~/Content/bootstrap.css.map</a>
+                <th>
+                    @Html.RouteLink("Address", "ViewAllUser", new { sortBy = ViewBag.addressSortParm, Page = Request.QueryString["Page"] })
+
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.dropdownCity, "City")
+                </th>
+                <th>
+                    @Html.RouteLink("Age", "ViewAllUser", new { sortBy = ViewBag.ageSortParm, Page = Request.QueryString["Page"] })
+
+                </th>
+                <th>
+                    @Html.RouteLink("Marks in SSC", "ViewAllUser", new { sortBy = ViewBag.markSortParm, Page = Request.QueryString["Page"] })
+
+
+                </th>
+                <th>
+                    Action
+                </th>
+
+            </tr>
+            @foreach (var item in Model.sortedList)
+            {
+
+
+
+                <tr style="background-color:ghostwhite">
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.userId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.firstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.lastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.dropdownCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.ssc_obtained_mark)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditUser", new { userId = item.userId }) |
+                        @Html.ActionLink("Delete", "DeleteUser", new { userId = item.userId, Page = Request.QueryString["Page"] }, new { onclick = "return confirm ( 'Are you sure wants to delete?' );" })
+                        @*  @using  (Html.BeginForm("DeleteUser","UserRecord",new { id = item.userId }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                                <button type="submit" onclick = "return confirm ( 'Are you sure wants to delete?' );" >Delete</button>
+                        } *@
+                    </td>
+
+
+                </tr>
+            }
+        </table>
+
+    </div>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.totalPages; i++)
+        {
+            <li class="@(i == ViewBag.currentPage ? "page-item active" : "page-item")">
+                <a class="page-link" href="@Url.Action("ViewAll", new { Page = i })">@i</a>
+            </li>
+
+        }
+    </ul>
+</body>
+</html>
+
+@*<ul class="pagination">
+    @if (ViewBag.currentPage > 1)
+    {
+        <a href="@Url.Action("PaginationView", new { page = ViewBag.currentPage - 1 })">Previous</a>
+    }
+
+    @for (int i = 1; i <= ViewBag.totalPages; i++)
+    {
+        if (i == ViewBag.currentPage)
+        {
+            <span>@i</span>
+        }
+        else
+        {
+            <a href="@Url.Action("PaginationView", new { page = i })">@i</a>
+        }
+    }
+
+    @if (ViewBag.currentPage < ViewBag.totalPages)
+    {
+        <a href="@Url.Action("PaginationView", new { page = ViewBag.currentPage + 1 })">Next</a>
+    }
+</ul>
+*@
+
+@*@Html.PagedListPager(Model, i => Url.Action("Index", "UserRec1", new { i, searchText = Request.QueryString["searchText"] }))*@
+
+@*<script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>*@
+
+  

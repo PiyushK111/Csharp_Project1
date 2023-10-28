@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserRecordModelStoreContainer" CdmEntityContainer="UserRecordEntities">
+    <EntitySetMapping Name="UserRec1">
+      <EntityTypeMapping TypeName="UserRecordModel.UserRec1">
+        <MappingFragment StoreEntitySet="UserRec1">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="mnumber" ColumnName="mnumber" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="dropdownCity" ColumnName="dropdownCity" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="ssc_total_mark" ColumnName="ssc_total_mark" />
+          <ScalarProperty Name="ssc_obtained_mark" ColumnName="ssc_obtained_mark" />
+          <ScalarProperty Name="percentage_ssc" ColumnName="percentage_ssc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

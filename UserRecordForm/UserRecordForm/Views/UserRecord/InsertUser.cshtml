@@ -1,0 +1,501 @@
+﻿<!--<!--@model UserRecordForm.Models.UserRecord
+
+{
+    ViewBag.Title = "InsertUser";
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+
+
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/Content/form1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<style type="text/css">
+
+
+
+.container1 {
+   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container2 {
+    position: fixed;
+    top: 53%;
+    left: 50%;99
+
+    transform: translate(-50%, -50%);
+}
+.container3 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.col-md-6 {
+    background-color: lightgray;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #333;
+  width: 400px;
+  max-width: 90%;
+}
+
+
+.radio-group {
+  text-align: center;
+}
+
+.radio-group label {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.form-group input {
+    max-width: 280px;
+}
+.radio-group input[type="radio"] {
+  vertical-align: middle;
+}-->
+-->
+
+<!--@*   margin-right: 290px;
+}*@-->
+<!--<!--</style>
+</head>
+<body>
+
+    <div id="div1" class="container1">
+        <div class="col-md-6">
+            <form>
+                <h2>Register</h2>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    <div id="errorEmail"></div>
+
+                </div>
+                @Html.ValidationMessageFor(m => m.email)
+
+
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                    <div id="errorusername"></div>
+                </div>
+                @Html.ValidationMessageFor(m => m.username)
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    <div id="demo"></div>
+
+                </div>
+                @Html.ValidationMessageFor(m => m.password)
+
+                <div class=" form-group">
+                    <label for="mnumber">Mobile Number</label>
+                    <input type="number" class="form-control" name="mnumber" id="mnumber" placeholder="Enter your mobile number" maxlength="10">
+                    <div id="errormnumber"></div>
+                </div>
+                @Html.ValidationMessageFor(m => m.mnumber)
+
+
+                <div class="col">
+                    <button type="button" id="next1" class="btn btn-primary">NEXT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="div2" class="container2" style="display: none;">
+        <div class="col-md-6">
+            <form id="form2" action="/">
+                <h2>Pesronal Record</h2>
+                <br />
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter your first name." required>
+                    <div id="errorfname"></div>
+                </div>
+                @Html.ValidationMessageFor(m => m.firstName)
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your last name." required>
+                    <div id="errorlname"></div>
+                </div>
+                @Html.ValidationMessageFor(m => m.lastName)
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="comments" class="form-control" rows="3" cols="50" placeholder="Enter your address." wrap="soft" maxlength="100" required>
+                    </textarea>
+                    <div id="demo"></div>
+                </div>
+                @Html.ValidationMessageFor(m => m.address)
+
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <select class="form-control custom-select browser-default" id="dropdownCity">
+                        <option value="-1">Choose an option</option>
+                        <option value="Jalna">Jalna</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Shri_nagar">Shri Nagar</option>
+                    </select>
+                    <div id="demo"></div>
+
+                </div>
+                @Html.ValidationMessageFor(m => m.dropdownCity)
+
+
+                <div class=" form-group">
+                    <label class="date">Date Of birth: </label>
+                    <input type="date" id="dob" class="form-control" required>
+                    <div id="errordob"></div>
+
+                </div>
+
+
+                <div class=" form-group">
+                    <label class="age">Age : </label>
+                    <input type="text" id="age" class="form-control" readonly>
+                    <div id="demo"></div>
+
+                </div>
+
+                <button type="button" id="prev2" class="btn btn-primary">PREV</button>
+
+                <button type="button" id="next2" class="btn btn-primary">NEXT</button>
+
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <div id="div3" class="container3" style="display: none;">
+        <div class="col-md-6">
+            <form id="form3" action="/">
+
+                <h2>Educational Details</h2>
+                <div class=" form-group">
+                    <label for="total_mark">Total Marks in SSC : </label>
+                    <input type="number" id="ssc_total_mark" class="form-control" placeholder="Enter total Marks" pattern="[0-9]+" />
+                    <div id="demo"></div>
+
+                </div>
+                @Html.ValidationMessageFor(m => m.ssc_total_mark)
+
+
+                <div class=" form-group">
+                    <label for="obtained_mark">Obtained Marks in SSC : </label>
+                    <input type="number" id="ssc_obtained_mark" class="form-control" placeholder="Enter Obtained Marks" pattern="[0-9]+" />
+                    <div id="demo"></div>
+
+                </div>
+                @Html.ValidationMessageFor(m => m.ssc_obtained_mark)
+
+
+                <div class=" form-group">
+                    <label for="Percentage">Percentage : </label>
+                    <input type="text" id="percentage" class="form-control" readonly>
+                    <input type="button" name="get" id="get1" value="Get">
+                </div>
+                @Html.ValidationMessageFor(m => m.percentage_ssc)
+
+
+                <button type="button" id="prev3" class="btn btn-primary">PREV</button>
+
+
+                <button type="submit" id="submitBtn" onclick="return Add()" class="btn btn-primary">Submit</button>
+
+
+            </form>
+        </div>
+
+
+        <!-- <button type="button" class="btn btn-primary">NEXT</button> -->
+<!--</div>
+
+
+</body>
+</html>
+<script>
+    function Validate() {
+
+
+        var isValid = true;
+        alert("in validate");
+        var firstname = $('#firstName').val();
+        var lastname = $('#lastName').val();
+
+        /*    alert("firstname :"+firstname);
+        */
+
+
+        if (firstname.trim() == "") {
+
+            document.getElementById("errorfname").innerHTML = "Enter first name";
+
+            isValid = false;
+
+        }
+
+        else {
+
+            var pattern = /^[A-Za-z]{3,}$/;
+
+            var isValidfname = pattern.test(firstname);
+
+            if (isValidfname == false) {
+
+                document.getElementById("errorfname").innerHTML = "Enter valid name";
+
+                isValid = false;
+
+            }
+            else {
+                document.getElementById("errorfname").innerHTML = "";
+
+            }
+
+        }
+
+        if (lastname.trim() == "") {
+
+            document.getElementById("errorlname").innerHTML = "Enter Last name";
+
+            isValid = false;
+
+        }
+
+        else {
+
+            var pattern = /^[A-Za-z]{3,}$/;
+
+            // Test if the first name matches the pattern
+
+            var isValidlname = pattern.test(lastname);
+
+            if (isValidlname == false) {
+
+                document.getElementById("errorlname").innerHTML = "Enter valid name";
+
+                isValid = false;
+            }
+            else {
+                document.getElementById("errorlname").innerHTML = "";
+
+            }
+
+        }
+
+        var username = $('#username').val();
+        var mnumber = $('#mnumber').val();
+
+
+
+        if (username.trim() == "") {
+
+            document.getElementById("errorusername").innerHTML = "Enter Username";
+
+            isValid = false;
+
+        }
+
+        else {
+
+            var pattern = /[!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+            var isValidusername = pattern.test(username);
+
+            if (isValidusername == false) {
+
+                document.getElementById("errorusername").innerHTML = "Enter valid Usernname";
+
+                isValid = false;
+
+            }
+            else {
+                document.getElementById("errorusername").innerHTML = "";
+
+            }
+
+        }-->
+-->
+<!--@* alert("2");*@-->
+<!--<!--if (mnumber.trim() == "") {
+    document.getElementById("errormnumber").innerHTML = "Please enter Mobile No";
+}
+else {
+
+    var pattern = /^\d{10}$/;
+    var isValidMobno = pattern.test(mnumber);
+    alert("mob value : " + isValidMobno);
+    if (isValidMobno == false) {
+        document.getElementById("errormnumber").innerHTML = "Enter Valid Mobile No.";
+        isValid = false;
+    }
+
+    else {
+        document.getElementById("errormnumber").innerHTML = "";
+
+    }
+}-->
+-->
+
+
+<!--@* var email = $('#email').val();
+ if (email.trim() == "") {
+
+     document.getElementById("errorEmail").innerHTML = "Enter email address";
+
+     isValid = false;
+
+ }
+
+ else {
+
+     var pattern = /^[\w-]+(\.[\w-]+)*#([\w-]+\.)+[a-zA-Z]{2,7}$/;
+
+     var isValidEmail = pattern.test(email);
+
+     if (isValidEmail == false) {
+
+         document.getElementById("errorEmail").innerHTML = "Enter valid email";
+
+         isValid = false;
+
+     }
+     else {
+         document.getElementById("errorEmail").innerHTML = "";
+
+     }
+
+ }*@-->
+<!--<!--var DOB = $('#dob').val();
+
+if (DOB.trim() == "") {
+    document.getElementById("errordob").innerHTML = "Please Enter Date of Birth";
+    isValid = false;
+}
+else {
+    document.getElementById("errordob").innerHTML = "";
+
+}-->
+-->
+<!--@* alert("3");*@-->
+<!--<!--return isValid;
+}
+
+
+function Add() {-->
+-->
+<!--@*alert("In add");*@
+
+        var isValid = Validate();
+        alert("isValid :" + isValid);
+
+        if (isValid == true) {
+            var empObj = {
+
+                email: $('#email').val(),
+                username: $('#username').val(),
+                password: $('#password').val(),
+                mnumber: $('#mnumber').val(),
+                firstName: $('#firstName').val(),
+                lastName: $('#lastName').val(),
+                address: $('#address').val(),
+                dropdownCity: $('#dropdownCity').val(),
+                dob: $('#dob').val(),
+                age: $('#age').val(),
+                ssc_total_mark: $('#ssc_total_mark').val(),
+                ssc_obtained_mark: $('#ssc_obtained_mark').val(),
+                percentage_ssc: $('#percentage').val()
+
+            };
+            $.ajax({
+                url: "/UserRecord/InsertUser",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                datatype: "json",
+                success: function (result) {
+                    if (result == "Insert") {
+                        alert("Record inserted success");
+                    }
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            })
+            return true;
+        }
+        else {
+            Validate();
+            return false;
+        }
+    }
+
+
+</script>-->
+-->
+
+
+@{
+    ViewBag.Title = "Task List";
+}
+
+<h2>Task List</h2>
+
+<div ng-app="taskApp" ng-controller="taskController">
+    <input type="text" ng-model="newTask" placeholder="Add a task">
+    <button ng-click="addTask()">Add Task</button>
+
+    <ul>
+        <li ng-repeat="task in tasks">{{ ta
+        
+        sk }}</li>
+    </ul> 
+</div>
+
+@section scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        angular.module('taskApp', [])
+            .controller('taskController', function ($scope) {
+                $scope.tasks = ['Learn AngularJS', 'Build an app'];
+
+                $scope.addTask = function () {
+                    if ($scope.newTask) {
+                        $scope.tasks.push($scope.newTask);
+                        $scope.newTask = '';
+                    }
+                };
+            });
+    </script>
+}

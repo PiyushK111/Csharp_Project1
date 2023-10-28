@@ -1,0 +1,226 @@
+﻿@model UserRecordForm.Models.UserRecord
+@{
+    ViewBag.Title = "EditUser";
+}
+
+<h2>EditUser</h2>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+
+
+    </title>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/form2.js"></script>
+    <style type="text/css">
+
+
+
+
+.container1 {
+   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container2 {
+ position: fixed;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container3 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.col-md-6 {
+    background-color: lightgray;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #333;
+  width: 400px;
+  max-width: 90%;
+}
+
+
+.radio-group {
+  text-align: center;
+}
+
+.radio-group label {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.form-group input {
+    max-width: 280px;
+}
+.radio-group input[type="radio"] {
+  vertical-align: middle;
+}
+
+ @*   margin-right: 290px;
+}*@
+    </style>
+</head>
+@using (Html.BeginForm("EditUser", "UserRecord", FormMethod.Post))
+{
+   
+        <div id="div1" class="container1" >
+            <div class="col-md-6" >
+                <div class="form-group" style="display: none;">
+                @Html.EditorFor(model => model.userId, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    <div id="demo"></div>
+
+                </div>
+
+                <div class="form-group" >
+                    <label for="username">Username</label>
+                    @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                    <div id="demo"></div>
+
+                </div>
+                <div class="form-group" style="display: none;">
+                    <label for="password">Password</label>
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" , @readonly="true" } })
+                    <div id="demo"></div>
+
+                </div>
+                <div class=" form-group">
+                    <label for="mnumber">Mobile Number</label>
+                    @Html.EditorFor(model => model.mnumber, new { htmlAttributes = new { @class = "form-control" } })
+                    <div id="demo"></div>
+                </div>
+
+
+                <div class="col">
+                    <button type="button" id="next1" class="btn btn-primary">NEXT</button>
+                </div>
+            </div>
+        </div>
+    
+
+
+        <div id="div2" class="container2" style="display: none;">
+            <div class="col-md-6">
+                    <h2>Pesronal Record</h2>
+                    <br />
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                        <div id="demo"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                        <div id="demo"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+
+                        <div id="demo"></div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        @Html.DropDownList("dropdownCity", new SelectList(new[]
+                             {
+                                 new { Value = "-1", Text = "Choose an option" },
+                                 new { Value = "Jalna", Text = "Jalna" },
+                                 new { Value = "Kolkata", Text = "Kolkata" },
+                                 new { Value = "Chennai", Text = "Chennai" },
+                                 new { Value = "Shri_nagar", Text = "Shri Nagar" }
+                             }, "Value", "Text"), new { @class = "form-control custom-select browser-default", id = "dropdownCity" })
+                    </div>
+                    <div id="demo"></div>
+                   
+                    <div class=" form-group" style="display: none;">
+                        <label class="date">Date Of birth: </label>
+@*                        @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control" } })
+*@                        @Html.TextBoxFor(model => model.dob, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+
+                        <div id="demo"></div>
+
+                    </div>
+                    <div class=" form-group" style="display: none;">
+                        <label class="age">Age : </label>
+                        <input type="text" id="age" class="form-control" readonly>
+                        <div id="demo"></div>
+
+                    </div>
+
+                    <button type="button" id="prev2" class="btn btn-primary">PREV</button>
+
+                    <button type="button" id="next2" class="btn btn-primary">NEXT</button>
+
+            </div>
+        </div>
+
+
+
+        <div id="div3" class="container3" style="display: none;">
+            <div class="col-md-6">
+
+                    <h2>Educational Details</h2>
+                    <div class=" form-group">
+                        <label for="total_mark">Total Marks in SSC : </label>
+                        @Html.EditorFor(model => model.ssc_total_mark, new { htmlAttributes = new { @class = "form-control" } })
+                        <div id="demo"></div>
+
+                    </div>
+                    <div class=" form-group">
+                        <label for="obtained_mark">Obtained Marks in SSC : </label>
+                        @Html.EditorFor(model => model.ssc_obtained_mark, new { htmlAttributes = new { @class = "form-control" } })
+                        <div id="demo"></div>
+
+                    </div>
+                    <div class=" form-group">
+                        <label for="Percentage">Percentage : </label>
+                        @Html.EditorFor(model => model.percentage_ssc, new { htmlAttributes = new { @readonly = "readonly" , @class = "form-control" } })
+                        <input type="button" name="get" id="get1" value="Get">
+                    </div>
+                    <button type="button" id="prev3" class="btn btn-primary">PREV</button>
+
+
+                    <input type="submit" value="Submit" />
+                    <div>
+
+                    </div>
+
+
+            </div>
+
+
+            </div>
+    
+
+}
